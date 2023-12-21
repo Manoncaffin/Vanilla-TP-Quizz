@@ -8,7 +8,7 @@ include_once('./partials/header.php');
         <div class="container-md col-5 text-center">
             <h2>Venez tester vos expressions !</h2>
 
-            <form action="./process/user_verif_pseudo.php" method="post">
+            <form action="process/user_verif_pseudo.php" method="post">
                 <div>
                     <label for="pseudo" class="form-label pt-5 pb-2">Entrez votre pseudo pour jouer</label>
                     <input type="text" class="form-control" id="pseudo" name="pseudo" required />
