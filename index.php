@@ -6,7 +6,7 @@ include_once('./partials/header.php');
 <main>
     <section id="one" class="d-flex justify-content-center">
         <div class="container-md col-5 text-center">
-            <h2>Bienvenue sur le quizz !</h2>
+            <h2>Venez tester vos expressions !</h2>
 
             <form action="./process/user_verif_pseudo.php" method="post">
                 <div>
