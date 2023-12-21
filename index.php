@@ -20,10 +20,6 @@ include_once('./partials/header.php');
     </section>
 </main>
 
-<?php
-// header('Location: ./pages/play.php');
-?>
-
 
 <?php
 include_once('./partials/footer.php');
