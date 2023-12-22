@@ -24,7 +24,6 @@ if(
             'pseudo' => $_POST["pseudo"], 
         ]);
     }
-
 }
 
 header('Location: ../pages/play.php');

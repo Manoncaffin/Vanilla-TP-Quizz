@@ -8,17 +8,53 @@
 }
 
 #four{
-    width: 100vw !important;
-    height: 100vh !important;
-    background-color: #83bfe9 !important;
-    font-family: 'Poppins', sans-serif !important;
-    font-weight: 400 !important;
+    width: 100vw;
+    height: 100vh;
+    background-color: #83bfe9;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400;
 }
 
-.carre{
-        width  : 50px !important;
-        height : 50px !important;
-        background : rgb(231, 226, 72) !important;
-        font-family: 'Poppins', sans-serif !important;
-        color: red;
+.classement{
+    display: flex;
+    justify-content: center;
+    padding-top: 50px;
+    font-size: 25px;
+}
+
+.container {
+    display: flex;
+    align-items: flex-end;
+  }
+  
+.podiumNumber {
+    display: flex;
+    justify-content: center;
+    font-size: 45px;
+    color: #000000;
+    margin-top: 15px;
+  }
+  
+#podiumSecond{
+    width  : 200px;
+    height : 150px;
+    background : rgb(72, 96, 231);
+    font-family: 'Poppins', sans-serif;
+}
+
+#podiumFirst{
+    width  : 200px;
+    height : 300px;
+    background : rgb(231, 226, 72);
+    display: flex;
+    justify-content: center;
+    margin-top: 80px;
+    font-family: 'Poppins', sans-serif;
+}
+
+#podiumThird{
+    width  : 200px;
+    height : 100px;
+    background : rgb(243, 72, 84);
+    font-family: 'Poppins', sans-serif;
 }
