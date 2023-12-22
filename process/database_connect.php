@@ -5,7 +5,7 @@ try{
 
     $username = 'root';
 
-    $password = 'root';
+    $password = '';
 
     $database = new PDO($dsn, $username, $password);
 }
