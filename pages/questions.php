@@ -1,18 +1,18 @@
 <?php
 session_start();
-if(isset($_SESSION['id'])){
-$id = $_SESSION['id'];
+if(isset($_SESSION['id'])){  
+$id=$_SESSION['id'];
 }else{
-$_SESSION['id'] =1;
+$id=1;
 }
 
 require_once('../process/database_connect.php');
 $request = $database->query("SELECT * FROM question WHERE id = $id");
 $questions = $request->fetch();
-var_dump($questions);
-$request = $database->query("SELECT * FROM answer WHERE id = $id ");
+// var_dump($questions);
+$request = $database->query("SELECT * FROM answer WHERE id = $id");
 $answers = $request->fetch();
-var_dump($answers);
+// var_dump($answers);
 ?>
 
 
@@ -39,13 +39,14 @@ var_dump($answers);
                 </svg></h2>
 
             <div class="text-center ">
-                <p class="fw-3">QUESTION  <?php echo $_SESSION['id']?> /10</p>
+                <p class="fw-3">QUESTION  <?php echo $questions['id'] ?> /10</p>
             </div>
 
             <p class="p-2"><?php echo $questions['questions'] ?></p>
 
             <form name="quiz" action="../process/answer_verif.php" method="POST">
                 <input type="hidden" name="id" value=<?php echo $questions['id'] ?>>
+                
                 <ul class="list-unstyled p-1 ">
 
                     <li class="border border-dark rounded shadow bg-info">
