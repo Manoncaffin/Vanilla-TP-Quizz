@@ -1,13 +1,14 @@
 <?php
 
 var_dump($_POST);
+session_start();
 
 if(
     isset($_POST["pseudo"]) && !empty($_POST["pseudo"])
     
 ) { 
     require_once('./database_connect.php');
-
+    $_SESSION['pseudo'] = $_POST['pseudo'];
 
     $findUser = $database->prepare('SELECT * FROM user WHERE pseudo = :pseudo');
     $findUser->execute([
@@ -24,6 +25,7 @@ if(
             'pseudo' => $_POST["pseudo"], 
         ]);
     }
+
 }
 
 header('Location: ../pages/play.php');

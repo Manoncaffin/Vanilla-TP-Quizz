@@ -7,6 +7,12 @@
     font-weight: 400;
 }
 
+#two {
+    width: 100vw;
+    height: 100vh;
+    background-color: #83bfe9;
+}
+
 #four{
     width: 100vw;
     height: 100vh;
