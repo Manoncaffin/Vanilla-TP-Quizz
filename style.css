@@ -6,3 +6,19 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 400;
 }
+
+#four{
+    width: 100vw !important;
+    height: 100vh !important;
+    background-color: #83bfe9 !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 400 !important;
+}
+
+.carre{
+        width  : 50px !important;
+        height : 50px !important;
+        background : rgb(231, 226, 72) !important;
+        font-family: 'Poppins', sans-serif !important;
+        color: red;
+}
