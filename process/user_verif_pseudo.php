@@ -28,6 +28,6 @@ if(
 
 }
 
-header('Location: ../pages/play.php');
+header('Location: ../pages/question.php');
 
 ?>
