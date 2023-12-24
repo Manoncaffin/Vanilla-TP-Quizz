@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['id'])){  
-$id=$_SESSION['id'];
-}else{
-$id=1;
+if (isset($_SESSION['id'])) {
+    $id = $_SESSION['id'];
+} else {
+    $id = 1;
 }
 
 require_once('../process/database_connect.php');
@@ -39,14 +39,31 @@ $answers = $request->fetch();
                 </svg></h2>
 
             <div class="text-center ">
-                <p class="fw-3">QUESTION  <?php echo $questions['id'] ?> /10</p>
+                <p class="fw-3">QUESTION <?php echo $questions['id'] ?> /10</p>
             </div>
 
             <p class="p-2"><?php echo $questions['questions'] ?></p>
+            <?php
+            $option = array('good_answer' => $answers['good_answer'], 'autre1_answer' => $answers['autre1_answer'], 'autre2_answer' => $answers['autre2_answer'], 'autre3_answer' => $answers['autre3_answer']);
+            //    var_dump($option);
+            shuffle($option);
+            $sum = [];
+            foreach ($option as $shuffleOption) {
+                //  $resultShuffle=$shuffleOption.'/ ' ;
+                array_push($sum, $shuffleOption);
+            }
+
+            // var_dump( $sum[0]);  
+
+
+            ?>
+
+
+
 
             <form name="quiz" action="../process/answer_verif.php" method="POST">
                 <input type="hidden" name="id" value=<?php echo $questions['id'] ?>>
-                
+
                 <ul class="list-unstyled p-1 ">
 
                     <li class="border border-dark rounded shadow bg-info">
@@ -55,7 +72,7 @@ $answers = $request->fetch();
                                 <p class="mb-0"><span class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-1-circle-fill" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M9.283 4.002H7.971L6.072 5.385v1.271l1.834-1.318h.065V12h1.312V4.002Z" />
-                                        </svg> </span> <?php echo $answers['good_answer'] ?></p>
+                                        </svg> </span> <?php echo $sum[0] ?></p>
                             </div>
                             <div><input type="radio" name="answer1" value="answer2"> </div>
                         </div>
@@ -67,7 +84,7 @@ $answers = $request->fetch();
                                 <p class="mb-0"><span class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-2-circle-fill" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M6.646 6.24c0-.691.493-1.306 1.336-1.306.756 0 1.313.492 1.313 1.236 0 .697-.469 1.23-.902 1.705l-2.971 3.293V12h5.344v-1.107H7.268v-.077l1.974-2.22.096-.107c.688-.763 1.287-1.428 1.287-2.43 0-1.266-1.031-2.215-2.613-2.215-1.758 0-2.637 1.19-2.637 2.402v.065h1.271v-.07Z" />
-                                        </svg> </span> <?php echo $answers['autre1_answer'] ?></p>
+                                        </svg> </span> <?php echo $sum[1] ?></p>
                             </div>
                             <div><input type="radio" name="answer1" value="answer2"> </div>
                         </div>
@@ -78,7 +95,7 @@ $answers = $request->fetch();
                                 <p class="mb-0"><span class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-3-circle-fill" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-8.082.414c.92 0 1.535.54 1.541 1.318.012.791-.615 1.36-1.588 1.354-.861-.006-1.482-.469-1.54-1.066H5.104c.047 1.177 1.05 2.144 2.754 2.144 1.653 0 2.954-.937 2.93-2.396-.023-1.278-1.031-1.846-1.734-1.916v-.07c.597-.1 1.505-.739 1.482-1.876-.03-1.177-1.043-2.074-2.637-2.062-1.675.006-2.59.984-2.625 2.12h1.248c.036-.556.557-1.054 1.348-1.054.785 0 1.348.486 1.348 1.195.006.715-.563 1.237-1.342 1.237h-.838v1.072h.879Z" />
-                                        </svg> </span><?php echo $answers['autre2_answer'] ?></p>
+                                        </svg> </span><?php echo $sum[2] ?></p>
                             </div>
                             <div><input type="radio" name="answer1" value="answer2"> </div>
                         </div>
@@ -89,19 +106,36 @@ $answers = $request->fetch();
                                 <p class="mb-0"><span class="">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-4-circle-fill" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M7.519 5.057c-.886 1.418-1.772 2.838-2.542 4.265v1.12H8.85V12h1.26v-1.559h1.007V9.334H10.11V4.002H8.176c-.218.352-.438.703-.657 1.055ZM6.225 9.281v.053H8.85V5.063h-.065c-.867 1.33-1.787 2.806-2.56 4.218Z" />
-                                        </svg> </span><?php echo $answers['autre3_answer'] ?></p>
+                                        </svg> </span><?php echo $sum[3] ?></p>
                             </div>
-                            <div><input type="radio" name="answer1" value="answer2" > </div>
+                            <div><input type="radio" name="answer1" value="answer2"> </div>
                         </div>
                     </li>
                 </ul>
 
 
                 <div class="w-2 p-2 d-flex justify-content-between">
+                    <!-- <?php
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="44" height="40" fill="currentColor" class="m-3 bi bi-hourglass-split" viewBox="0 0 16 16">
-                        <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z" />
-                    </svg>
+                            // $oldtime = $_SESSION['time_started'];
+                            // $newtime = time();
+                            // var_dump($newtime);
+                            // $difference = $newtime - $oldtime;
+                            // $_SESSION['time_remaining'] = $_SESSION['time_remaining'] - $difference;
+                            // if ($_SESSION['time_remaining'] > 0) {
+                            // $_SESSION['time_started'] = $newtime;
+                            // $newtime =$newtime-1;
+                            //continue
+                            // } else {
+                            // out of time
+                            // }
+                            ?> -->
+                    <div> <svg xmlns="http://www.w3.org/2000/svg" width="44" height="40" fill="currentColor" class="m-3 bi bi-hourglass-split" viewBox="0 0 16 16">
+                            <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z" />
+                        </svg>
+                        <!-- <input type="hidden" name="time_started" id="timer" placeholder="time_started:<?php echo $_SESSION['time_started'] ?>"> -->
+                        <!-- <input type="text" name="time_remaining" id="timer" placeholder="time_remaining:<?php echo $_SESSION['time_remaining'] ?>"> -->
+                    </div>
                     <input type="submit" name="submit" class="" value="suivant">
             </form>
 
@@ -119,6 +153,13 @@ $answers = $request->fetch();
 
     <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <script>
+            function goToNextQuestion() {
+
+
+
+            }
+        </script>
     </body>
 
 </html>
