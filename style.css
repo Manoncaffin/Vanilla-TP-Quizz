@@ -68,3 +68,11 @@
     width:100%;
     position: fixed;
 }
+.sizeMyBox{
+    width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
