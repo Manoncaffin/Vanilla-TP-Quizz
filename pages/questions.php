@@ -1,11 +1,11 @@
 <?php
+
 session_start();
 if (isset($_SESSION['id'])) {
     $id = $_SESSION['id'];
 } else {
     $id = 1;
 }
-
 require_once('../process/database_connect.php');
 $request = $database->query("SELECT * FROM question WHERE id = $id");
 $questions = $request->fetch();
@@ -14,10 +14,6 @@ $request = $database->query("SELECT * FROM answer WHERE id = $id");
 $answers = $request->fetch();
 // var_dump($answers);
 ?>
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,16 +48,9 @@ $answers = $request->fetch();
                 //  $resultShuffle=$shuffleOption.'/ ' ;
                 array_push($sum, $shuffleOption);
             }
-
             // var_dump( $sum[0]);  
-
-
             ?>
-
-
-
-
-            <form name="quiz" action="../process/answer_verif.php" method="POST">
+            <form name="quiz" id="quizForm" action="../process/answer_verif.php" method="POST">
                 <input type="hidden" name="id" value=<?php echo $questions['id'] ?>>
 
                 <ul class="list-unstyled p-1 ">
@@ -112,54 +101,37 @@ $answers = $request->fetch();
                         </div>
                     </li>
                 </ul>
-
-
                 <div class="w-2 p-2 d-flex justify-content-between">
-                    <!-- <?php
-
-                            // $oldtime = $_SESSION['time_started'];
-                            // $newtime = time();
-                            // var_dump($newtime);
-                            // $difference = $newtime - $oldtime;
-                            // $_SESSION['time_remaining'] = $_SESSION['time_remaining'] - $difference;
-                            // if ($_SESSION['time_remaining'] > 0) {
-                            // $_SESSION['time_started'] = $newtime;
-                            // $newtime =$newtime-1;
-                            //continue
-                            // } else {
-                            // out of time
-                            // }
-                            ?> -->
-                    <div> <svg xmlns="http://www.w3.org/2000/svg" width="44" height="40" fill="currentColor" class="m-3 bi bi-hourglass-split" viewBox="0 0 16 16">
+                    <div class="d-flex flex-column"> <b><span id="count">10</span> Seconds</b>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="44" height="40" fill="currentColor" class="m-3 bi bi-hourglass-split" viewBox="0 0 16 16">
                             <path d="M2.5 15a.5.5 0 1 1 0-1h1v-1a4.5 4.5 0 0 1 2.557-4.06c.29-.139.443-.377.443-.59v-.7c0-.213-.154-.451-.443-.59A4.5 4.5 0 0 1 3.5 3V2h-1a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-1v1a4.5 4.5 0 0 1-2.557 4.06c-.29.139-.443.377-.443.59v.7c0 .213.154.451.443.59A4.5 4.5 0 0 1 12.5 13v1h1a.5.5 0 0 1 0 1zm2-13v1c0 .537.12 1.045.337 1.5h6.326c.216-.455.337-.963.337-1.5V2zm3 6.35c0 .701-.478 1.236-1.011 1.492A3.5 3.5 0 0 0 4.5 13s.866-1.299 3-1.48zm1 0v3.17c2.134.181 3 1.48 3 1.48a3.5 3.5 0 0 0-1.989-3.158C8.978 9.586 8.5 9.052 8.5 8.351z" />
                         </svg>
-                        <!-- <input type="hidden" name="time_started" id="timer" placeholder="time_started:<?php echo $_SESSION['time_started'] ?>"> -->
-                        <!-- <input type="text" name="time_remaining" id="timer" placeholder="time_remaining:<?php echo $_SESSION['time_remaining'] ?>"> -->
                     </div>
                     <input type="submit" name="submit" class="" value="suivant">
             </form>
-
         </div>
-
     </div>
-
     </div>
-
     </head>
-
-
-
-
-
-    <body>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
         <script>
-            function goToNextQuestion() {
+        var count = 10;
 
+        // Function to decrement the timer and submit the form when the timer reaches zero
+        function decrement() {
+            count--;
 
-
+            if (count === 0) {
+                document.getElementById("quizForm").submit();
+            } else {
+                document.getElementById("count").textContent = count;
+                setTimeout(decrement, 1000);
             }
-        </script>
+        }
+
+        // Start the countdown when the page loads
+        decrement();
+    </script>
     </body>
 
 </html>
