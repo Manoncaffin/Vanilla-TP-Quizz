@@ -19,15 +19,16 @@ if(
     if($existingUser) {
         $userId = $existingUser['id'];
     } else {
-        $request = $database->prepare('INSERT INTO user (pseudo) 
-        VALUES (:pseudo)');
+        $request = $database->prepare('INSERT INTO user (pseudo, score) 
+        VALUES (:pseudo,:score)');
         $request->execute([
             'pseudo' => $_POST["pseudo"], 
+            'score'=> 0 ,
         ]);
     }
 
 }
 
-header('Location: ../pages/question.php');
+header('Location: ../pages/questions.php');
 
 ?>
